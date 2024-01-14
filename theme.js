@@ -6,6 +6,16 @@ const theme = createTheme({
     background: {
       default: "#1d1f26",
     },
+    primary: {
+      main: "#bea4ff",
+    },
+  },
+
+  typography: {
+    button: {
+      textTransform: "unset",
+      fontWeight: 700,
+    },
   },
 });
 
