@@ -6,8 +6,30 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
+import { useState } from "react";
+
+const initForm = {
+  email: "",
+  password: "",
+};
 
 export default function AuthScreen() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [form, setForm] = useState(initForm);
+
+  const authText = isLogin
+    ? "Do not have an account?"
+    : "Already have an account?";
+
+  const handleChange = (e) =>
+    setForm((oldForm) => ({
+      ...oldForm,
+      [e.target.name]: e.target.value,
+    }));
+  //   console.log(form);
+
+  const handleAuth = async () => {};
+
   return (
     <Container
       maxWidth="xs"
@@ -24,14 +46,34 @@ export default function AuthScreen() {
         </Typography>
       </Stack>
       <Stack spacing={2}>
-        <TextField label="Email" />
-        <TextField label="Password" />
-        <Button variant="contained" size="large">
-          Login
+        <TextField
+          value={form.email}
+          name="email"
+          label="Email"
+          onChange={handleChange}
+        />
+        <TextField
+          value={form.password}
+          name="password"
+          label="Password"
+          onChange={handleChange}
+        />
+        <Button
+          disabled={!form.email.trim() || !form.password.trim()}
+          variant="contained"
+          size="large"
+          onClick={handleAuth}
+        >
+          {isLogin ? "Login" : "Register"}
         </Button>
       </Stack>
-      <Typography textAlign="center" mt={3}>
-        Do not have an account?
+      <Typography
+        onClick={() => setIsLogin((o) => !o)}
+        textAlign="center"
+        mt={3}
+        sx={{ cursor: "pointer" }}
+      >
+        {authText}
       </Typography>
     </Container>
   );
