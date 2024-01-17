@@ -7,6 +7,11 @@ import {
   TextField,
 } from "@mui/material";
 import { useState } from "react";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../../firebase";
 
 const initForm = {
   email: "",
@@ -16,6 +21,7 @@ const initForm = {
 export default function AuthScreen() {
   const [isLogin, setIsLogin] = useState(true);
   const [form, setForm] = useState(initForm);
+  const [loading, setLoading] = useState(false);
 
   const authText = isLogin
     ? "Do not have an account?"
@@ -28,7 +34,21 @@ export default function AuthScreen() {
     }));
   //   console.log(form);
 
-  const handleAuth = async () => {};
+  const handleAuth = async () => {
+    try {
+      setLoading(true);
+      if (isLogin) {
+        await signInWithEmailAndPassword(auth, form.email, form.password);
+      } else {
+        await createUserWithEmailAndPassword(auth, form.email, form.password);
+      }
+    } catch (error) {
+      const msg = error.code.split("auth/")[1].split("-").join(" ");
+      console.log(msg);
+      // console.log(error.code);
+      setLoading(false);
+    }
+  };
 
   return (
     <Container
@@ -59,7 +79,7 @@ export default function AuthScreen() {
           onChange={handleChange}
         />
         <Button
-          disabled={!form.email.trim() || !form.password.trim()}
+          disabled={loading || !form.email.trim() || !form.password.trim()}
           variant="contained"
           size="large"
           onClick={handleAuth}

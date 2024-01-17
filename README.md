@@ -9,7 +9,7 @@
 - `--import=./fb-emulator`: This part of the command specifies that the emulator should import data from the ./fb-emulator directory. This could be a directory containing data snapshots or configurations that the emulators should use when starting up. It's a way to pre-populate your local emulated environment with some initial data.
 - `--export-on-exit`: This option indicates that, upon exiting the emulators, the current state of the emulated services will be exported to the ./fb-emulator directory. This is useful if you want to persist the state of your local emulators between sessions, ensuring that you don't lose any changes made during development.
 - Run emulator with `npm run fb-emulators`
-- To use Firebase Emulator, download `Java JDK` version 11 or higher.
+- To use Firebase Emulator, download `Java Runtime Environment (JRE)` version 11 or higher.
 
 # Dependencies
 
@@ -18,3 +18,4 @@
 - react-router-dom
 - firebase
 - firebase-tools (global)
+- zustand
