@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { auth } from "./firebase";
 import useStore from "./store";
 import Loader from "./components/layout/Loader";
+import PublicOnlyRoute from "./components/utils/PublicOnlyRoute";
+import BoardsScreen from "./screens/BoardsScreen/BoardsScreen";
 
 function App() {
   const { loader, setLoginStatus } = useStore();
@@ -27,7 +29,15 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<AuthScreen />} />
+          {/* <Route path="/" element={<AuthScreen />} /> */}
+          <Route
+            path="/"
+            element={<PublicOnlyRoute Component={AuthScreen} />}
+          />
+          <Route
+            path="/boards"
+            element={<BoardsScreen Component={BoardsScreen} />}
+          />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
