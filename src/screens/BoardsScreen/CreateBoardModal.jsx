@@ -6,24 +6,42 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import ModalHeader from "../../components/layout/ModalHeader";
-import { colors } from "../../../theme";
 import { useState } from "react";
+import { colors } from "../../../theme";
+import ModalHeader from "../../components/layout/ModalHeader";
+import useApp from "../../hooks/useApp";
 
-export default function CreateBoardModal() {
+// eslint-disable-next-line react/prop-types
+export default function CreateBoardModal({ closeModal }) {
   const [name, setName] = useState("");
   const [color, setColor] = useState(0);
-  console.log(setName);
+  const [loading, setLoading] = useState(false);
+
+  //   console.log(setName);
   //   console.log(color);
+
+  const { createBoard } = useApp();
+
+  const handleCreate = async () => {
+    try {
+      setLoading(true);
+      createBoard({ name, color });
+      closeModal();
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
   return (
-    <Dialog open fullWidth maxWidth="xs">
+    <Dialog open fullWidth maxWidth="xs" onClose={closeModal}>
       <Stack p={2}>
-        <ModalHeader title="Create Board" />
+        <ModalHeader title="Create Board" onClose={closeModal} />
         <Stack my={5} spacing={3}>
           <TextField
             label="Board name"
             value={name}
-            onChange={(e) => e.target.value}
+            onChange={(e) => setName(e.target.value)}
           />
           <Stack direction="row" spacing={1.5}>
             <Typography>Color: </Typography>
@@ -46,7 +64,12 @@ export default function CreateBoardModal() {
             </Stack>
           </Stack>
         </Stack>
-        <Button variant="contained" size="large">
+        <Button
+          disabled={loading}
+          variant="contained"
+          size="large"
+          onClick={handleCreate}
+        >
           Create
         </Button>
       </Stack>

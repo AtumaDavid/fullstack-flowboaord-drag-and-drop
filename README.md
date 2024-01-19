@@ -19,3 +19,28 @@
 - firebase
 - firebase-tools (global)
 - zustand
+
+# Database Structure example for creating and updating boards
+
+1. Stores core board information that's less likely to change frequently.
+
+- `users/{uid}/boards/{board_id}`
+  {
+  "boardId": "12345",
+  "boardName": "My First Board",
+  "color": "#FF0000", // Assuming a color code representation
+  "createdAt": 1654608543 // Timestamp
+  }
+
+2. Stores board data that's more dynamic and might experience frequent updates.
+
+- `users/{uid}/boardsData/{board_id}`
+  {
+  "boardId": "12345",
+  "updatedAt": 1654610000, // Timestamp
+  "tabs": {
+  "pending": [], // Contains data for pending tasks
+  "inProgress": [], // Contains data for in-progress tasks
+  "completed": [] // Contains data for completed tasks
+  }
+  }
