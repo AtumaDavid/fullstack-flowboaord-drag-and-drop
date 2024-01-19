@@ -5,9 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 export default function ModalHeader({ title, onClose }) {
   return (
     <Stack direction="row" alignItems="center" justifyContent="space-between">
-      <Typography variant="h6" fontWeight={700}>
-        {title}
-      </Typography>
+      <Typography variant="h6">{title}</Typography>
       <IconButton size="small" onClick={onClose}>
         <CloseIcon />
       </IconButton>
