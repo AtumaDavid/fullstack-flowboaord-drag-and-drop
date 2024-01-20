@@ -1,7 +1,9 @@
 import OpenIcon from "@mui/icons-material/Launch";
 import { Box, Grid, IconButton, Stack, Typography } from "@mui/material";
+import { colors } from "../../../theme";
 
-export default function BoardCard() {
+// eslint-disable-next-line react/prop-types
+export default function BoardCard({ name, color, createdAt }) {
   return (
     <>
       <Grid item xs={3}>
@@ -9,7 +11,7 @@ export default function BoardCard() {
           p={2}
           bgcolor="background.paper"
           borderLeft="5px solid"
-          borderColor="white"
+          borderColor={colors[color]}
         >
           <Stack
             direction="row"
@@ -24,7 +26,7 @@ export default function BoardCard() {
                 overflow="hidden"
                 textOverflow="ellipsis"
               >
-                Board Namebbbb djbe dh3ebdkjne ekdjwnc
+                {name}
               </Typography>
             </Box>
 
@@ -32,7 +34,7 @@ export default function BoardCard() {
               <OpenIcon />
             </IconButton>
           </Stack>
-          <Typography variant="caption">Created at: 19/01/2024</Typography>
+          <Typography variant="caption">Created at: {createdAt}</Typography>
         </Stack>
       </Grid>
     </>
