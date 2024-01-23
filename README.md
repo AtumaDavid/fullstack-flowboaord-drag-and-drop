@@ -1,5 +1,7 @@
 # Kaban Web App (React.js, Drag and Drop, MUI V5, Zustand)
 
+# using cloud function for firebase (path: functions/index.js)
+
 # Firebase Emulator
 
 - Add in `package.json`: ("fb-emulators": "firebase emulators:start --import=./fb-emulator --export-on-exit"
@@ -20,7 +22,7 @@
 - firebase-tools (global)
 - zustand
 
-# Database Structure example for creating and updating boards
+# Database Structure example for creating and updating boards for user
 
 1. Stores core board information that's less likely to change frequently.
 

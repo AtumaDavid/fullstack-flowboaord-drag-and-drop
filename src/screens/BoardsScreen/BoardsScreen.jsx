@@ -28,8 +28,11 @@ export default function BoardsScreen() {
 
       <Stack px={3} mt={5}>
         <Grid container spacing={4}>
-          {boards.map((board) => (
+          {/* {boards.map((board) => (
             <BoardCard key={board.id} {...board} />
+          ))} */}
+          {boards.map((board, index) => (
+            <BoardCard key={`${board.id}-${index}`} {...board} />
           ))}
         </Grid>
       </Stack>

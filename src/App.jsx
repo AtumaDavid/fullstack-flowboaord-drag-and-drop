@@ -9,6 +9,8 @@ import useStore from "./store";
 import Loader from "./components/layout/Loader";
 import PublicOnlyRoute from "./components/utils/PublicOnlyRoute";
 import BoardsScreen from "./screens/BoardsScreen/BoardsScreen";
+import ToastrManager from "./components/layout/ToastrManager";
+import PrivateRoute from "./components/utils/PrivateRoute";
 
 function App() {
   const { loader, setLoginStatus } = useStore();
@@ -26,7 +28,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
+      <ToastrManager />
       <BrowserRouter>
         <Routes>
           {/* <Route path="/" element={<AuthScreen />} /> */}
@@ -36,7 +38,7 @@ function App() {
           />
           <Route
             path="/boards"
-            element={<BoardsScreen Component={BoardsScreen} />}
+            element={<PrivateRoute Component={BoardsScreen} />}
           />
         </Routes>
       </BrowserRouter>

@@ -1,5 +1,7 @@
 import LogoutIcon from "@mui/icons-material/ExitToApp";
 import { AppBar, Button, Stack, Toolbar, Typography } from "@mui/material";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 // eslint-disable-next-line react/prop-types
 export default function Topbar({ openModal }) {
@@ -11,7 +13,11 @@ export default function Topbar({ openModal }) {
           <Button variant="contained" onClick={openModal}>
             Create Board
           </Button>
-          <Button startIcon={<LogoutIcon />} color="inherit">
+          <Button
+            onClick={() => signOut(auth)}
+            startIcon={<LogoutIcon />}
+            color="inherit"
+          >
             Logout
           </Button>
         </Stack>
