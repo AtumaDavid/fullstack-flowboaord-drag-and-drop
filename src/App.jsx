@@ -11,6 +11,7 @@ import PublicOnlyRoute from "./components/utils/PublicOnlyRoute";
 import BoardsScreen from "./screens/BoardsScreen/BoardsScreen";
 import ToastrManager from "./components/layout/ToastrManager";
 import PrivateRoute from "./components/utils/PrivateRoute";
+import BoardScreen from "./screens/BoardScreen/BoardScreen";
 
 function App() {
   const { loader, setLoginStatus } = useStore();
@@ -39,6 +40,10 @@ function App() {
           <Route
             path="/boards"
             element={<PrivateRoute Component={BoardsScreen} />}
+          />
+          <Route
+            path="/boards/:boardId"
+            element={<PrivateRoute Component={BoardScreen} />}
           />
         </Routes>
       </BrowserRouter>
