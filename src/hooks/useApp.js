@@ -2,6 +2,7 @@ import { getAuth } from "firebase/auth";
 import {
   addDoc,
   collection,
+  doc,
   getDocs,
   orderBy,
   query,
@@ -26,7 +27,12 @@ export default function useApp() {
         color,
         createdAt: serverTimestamp(),
       });
-      addBoard({ name, color, createdAt: new Date().toLocaleDateString() });
+      addBoard({
+        name,
+        color,
+        createdAt: new Date().toLocaleDateString(),
+        id: doc.id,
+      });
     } catch (error) {
       console.log(error);
       throw error; //throw error to createBoard Modal trycatch

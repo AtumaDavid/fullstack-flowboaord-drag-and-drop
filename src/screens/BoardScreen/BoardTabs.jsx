@@ -1,7 +1,8 @@
 import { Grid, Stack, Typography, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/AddCircle";
 
-export default function BoardTabs() {
+// eslint-disable-next-line react/prop-types
+export default function BoardTabs({ name, addTask }) {
   return (
     <>
       <Grid item xs={4}>
@@ -12,9 +13,9 @@ export default function BoardTabs() {
             sx={{ justifyContent: "space-between" }}
           >
             <Typography variant="h6" fontWeight={300}>
-              Todos
+              {name}
             </Typography>
-            <IconButton>
+            <IconButton onClick={addTask}>
               <AddIcon />
             </IconButton>
           </Stack>

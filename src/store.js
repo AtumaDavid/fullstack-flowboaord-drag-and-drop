@@ -21,7 +21,8 @@ const store = (set) => ({
     ),
   setBoards: (boards) =>
     set({ boards, areBoardsFetched: true }, false, "setBoards"),
-  addBoard: (board) => set((old) => ({ boards: [board, ...old.boards] })),
+  addBoard: (board) =>
+    set((old) => ({ boards: [board, ...old.boards] }), false, "addBoard"),
 });
 
 const useStore = create(devtools(store));

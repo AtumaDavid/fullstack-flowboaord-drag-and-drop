@@ -1,9 +1,11 @@
 import OpenIcon from "@mui/icons-material/Launch";
 import { Box, Grid, IconButton, Stack, Typography } from "@mui/material";
 import { colors } from "../../../theme";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-export default function BoardCard({ name, color, createdAt }) {
+export default function BoardCard({ name, color, createdAt, id }) {
+  const navigate = useNavigate();
   return (
     <>
       <Grid item xs={3}>
@@ -30,7 +32,7 @@ export default function BoardCard({ name, color, createdAt }) {
               </Typography>
             </Box>
 
-            <IconButton size="small">
+            <IconButton size="small" onClick={() => navigate(`/boards/${id}`)}>
               <OpenIcon />
             </IconButton>
           </Stack>
